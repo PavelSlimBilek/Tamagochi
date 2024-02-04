@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Remove Pet</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+    <header>
+        <h1 th:if="${petsPool.isEmpty()}" class="logo">You have no pets yet!</h1>
+        <h1 th:unless="${petsPool.isEmpty()}" class="logo">Pets to remove:</h1>
+    </header>
+    <main>
+        <form th:each="pet : ${petsPool}" action="/pet/removePet" method="post">
+            <button type="submit" name="petID" th:value="${pet.getId()}" style="border: none; background: none; padding: 0;">
+                <div class="petDisplay">
+                    <div class="imageContainer">
+                        <img th:src="@{${pet.getImage()}}" th:alt="${pet.getName()}" />
+                    </div>
+                    <h3 class="name" th:text="${pet.getName()}"></h3>
+                    <h4 class="name" th:text="${pet.getType()}"></h4>
+                    <p class="happiness" th:text="${pet.getDescription}"></p>
+                </div>
+            </button>
+        </form>
+    </main>
+    <footer>
+        <div class="panel">
+            <a th:href="@{/pet/pets}" class="navButton">PETS</a>
+            <form action="/pet/removeAll" method="post">
+                <button type="submit" class="quitButton">DEL ALL</button>
+            </form>
+        </div>
+    </footer>
+</body>
+</html>

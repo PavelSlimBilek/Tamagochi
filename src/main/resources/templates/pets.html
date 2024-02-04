@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>View Pet</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <header class="centered">
+            <h1 th:if="${petsPool.isEmpty()}" class="logo">You have no pets!</h1>
+            <h1 th:unless="${petsPool.isEmpty()}" class="logo">Your current pets:</h1>
+        </header>
+        <main>
+            <form th:each="pet : ${petsPool}" action="/pet/view" method="get">
+                <button type="submit" name="petID" th:value="${pet.getId()}" style="border: none; background: none; padding: 0;">
+                    <div class="petDisplay centered">
+                        <div class="imageContainer">
+                            <img th:src="@{${pet.getImage()}}" th:alt="${pet.getName()}" />
+                        </div>
+                        <h3 class="name" th:text="${pet.getName()}"></h3>
+                        <h4 class="name" th:text="${pet.getType()}"></h4>
+                        <p class="happiness" th:text="${pet.getDescription}"></p>
+                    </div>
+                </button>
+            </form>
+        </main>
+        <footer>
+            <div class="panel">
+                <a th:href="@{/pet/createForm}" class="actionButton centered">CREATE</a>
+                <a th:if="${!petsPool.isEmpty()}" th:href="@{/pet/removeForm}" class="actionButton centered">REMOVE</a>
+                <a th:if="${petsPool.isEmpty()}" class="deadButton centered">REMOVE</a>
+                <a th:href="@{/shop/view}" class="navButton centered">SHOP</a>
+                <a class="deadButton">HOME</a>
+            </div>
+        </footer>
+    </body>
+</html>

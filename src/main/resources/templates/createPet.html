@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Create a pet</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <header>
+            <h1 class="logo">Create a pet!</h1>
+        </header>
+        <main>
+            <div class="container">
+                <h1 class="name">Create a new pet! :)</h1>
+                <form action="/pet/create" method="post" id="form">
+                    <select name="type" th:placeholder="'PET TYPE'" required>
+                        <option th:each="type : ${typePool}" th:value="${type}" th:text="${type}"></option>
+                    </select>
+                    <input name="name" type="text" required th:value="${randomName}">
+                    <input name="description" type="text" required th:value="${randomDescription}">
+                </form>
+            </div>
+            <div class="container" style="border: 0px white;"></div>
+        </main>
+        <footer>
+            <div class="panel">
+                <a th:href="@{/pet/createBlank}" class="quitButton">CLEAR</a>
+                <a th:href="@{/pet/createForm}" class="actionButton">ROLL</a>
+                <button type="submit" class="confirmButton" form="form">CREATE</button>
+                <a th:href="@{/pet/pets}" class="navButton">PETS</a>
+            </div>
+        </footer>
+    </body>
+</html>
