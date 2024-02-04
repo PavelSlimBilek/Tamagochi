@@ -1,0 +1,2 @@
+# Tamagochi
+Simple tamagochi
