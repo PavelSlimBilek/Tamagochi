@@ -4,6 +4,7 @@ Simple Tamagochi created in cooperation with Aneta Benešová ( github.com/Aneta
 - /pet/pets - initial endpoint
 - allows you to interact with your pet - simulates 90s tamagochi
 - practice project before learning DBs (uses in-memory pet,item and shop data)
+- shopping cart and items are global
 - dont let your pet die by being too tired and hungry!!
 - the more days it survives, the better!!
 - can sleep if tiredness > 3
